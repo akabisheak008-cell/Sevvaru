@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sevaru</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #FFF21A;
+            color: #171717;
+        }
+
+        #nav {
+            padding: 10px 20px;
+            background-color: #3921048f;
+            color: #171717;
+            border: 2px;
+            /* border: 7px solid #A66BFF; */
+        }
+
+        #nav .nav-logo {
+            display: block;
+            width: clamp(100px, 18vw, 180px);
+            height: 52px;
+            object-fit: contain;
+        }
+        #hero{
+            margin: 40px;
+            /* background-image: url('./Image/logo.png');
+            background-size: cover;
+            background-position: center; */
+        }
+         #offer {
+            padding: 0 2px;
+        }
+
+        #offer img {
+            width: 100%;
+            height: clamp(180px, 30vw, 500px);
+            margin-top: 20px;
+            padding: 10px 0px;
+            position: relative;
+        }
+         .faq-section {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 25px 30px;
+        }
+
+        .faq-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .faq-heading h1 {
+            font-size: 42px;
+            color: #171717;
+            /* margin-bottom: 0px; */
+        }
+
+        .faq-heading h1 span {
+            color: #C9A45C;
+        }
+
+        .faq-heading p {
+            font-size: 17px;
+            color: #5b08d7;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #33333A;
+            padding: 22px 5px;
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            color: #171717;
+            font-size: 19px;
+            font-weight: bold;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            color: #C9A45C;
+        }
+
+        .faq-question span {
+            color: #C9A45C;
+            font-size: 25px;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+
+        .faq-answer p {
+            color: #5b08d7;
+            font-size: 16px;
+            line-height: 1.8;
+            padding-top: 15px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+
+        .faq-item.active .faq-question span {
+            transform: rotate(45deg);
+        }
+
+        .faq-question span {
+            transition: transform 0.3s ease;
+        }
+
+        @media (max-width: 600px) {
+            .faq-section {
+                margin: 20px auto;
+                padding: 0 20px 20px;
+            }
+
+            .faq-heading h1 {
+                font-size: 32px;
+            }
+
+            .faq-question {
+                font-size: 16px;
+            }
+
+            .faq-answer p {
+                font-size: 14px;
+            }
+        }
+        .footer {
+            box-sizing: border-box;
+            width: 100%;
+            background-color: #8F7A06;
+            padding: 16px clamp(20px, 6vw, 80px) 12px;
+        }
+
+        /* Sevaru Logo */
+
+        .logo {
+            text-align: center;
+            margin: 0 0 12px;
+        }
+
+        .logo img {
+            width: min(52%, 360px);
+            height: auto;
+        }
+
+        /* Section Headings */
+
+        .heading {
+            color: #080808;
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 1.2;
+            margin: 0 0 8px;
+        }
+
+        .heading-line {
+            width: 58px;
+            height: 3px;
+            background-color: #080808;
+            margin: 0 0 10px;
+        }
+
+        /* Quick Links */
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: 14px;
+        }
+
+        .link-column {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .link-column:last-child {
+            text-align: right;
+        }
+
+        .quick-links a {
+            color: #F5F2EC;
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 1.25;
+        }
+
+        .quick-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Divider */
+
+        .divider {
+            border: none;
+            height: 2px;
+            background-color: #080808;
+            margin: 0 0 12px;
+        }
+
+        /* Contact Information */
+
+        .contact-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 8px 0 14px;
+        }
+
+        .email {
+            color: #F5F2EC;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .instagram {
+            width: 34px;
+            height: 34px;
+            color: #080808;
+        }
+
+        /* Copyright */
+
+        .copyright {
+            border-top: 2px solid #080808;
+            padding-top: 10px;
+            line-height: 1.25;
+            color: #F5F2EC;
+            font-size: 16px;
+        }
+
+        /* Mobile Responsive */
+
+        @media (max-width: 600px) {
+
+            .footer {
+                padding: 14px 9% 10px;
+            }
+
+            .logo {
+                margin-bottom: 12px;
+            }
+
+            .logo img {
+                width: min(72%, 280px);
+            }
+
+            .heading {
+                font-size: 22px;
+            }
+
+            .heading-line {
+                margin-bottom: 10px;
+            }
+
+            .quick-links {
+                gap: 12px;
+            }
+
+            .link-column {
+                gap: 6px;
+            }
+
+            .quick-links a {
+                font-size: 15px;
+            }
+
+            .email {
+                font-size: 17px;
+            }
+
+            .instagram {
+                width: 38px;
+                height: 38px;
+            }
+
+            .copyright {
+                font-size: 16px;
+                padding-top: 10px;
+            }
+
+            .contact-row {
+                gap: 16px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <!-- navigation -->
+        <div id="nav">
+            <nav>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <button style="padding: 0%; font-size: 20px; border: none;background: none; color: #171717;"><i
+                            class="fa-solid fa-magnifying-glass"></i></button>
+                            <a href="./HOME.html">
+                    <img class="nav-logo" src="./Image/logo.png" alt="Sevaru">
+                    </a>
+                    <a href="./ORDERBAG.html">
+                    <button style="padding: 0%; font-size: 20px; border: none;background: none; color: #171717;"><i
+                            class="fa-solid fa-bag-shopping"></i></button>
+                    </a>
+                </div>
+            </nav>
+        </div>
+       <!-- hero section -->
+        <div>
+            <div id="hero">
+                <img src="./Image/F1_images.svg" alt="hero image"
+                    style="width: 100%; height: 400px;">
+            </div>
+            <div style="margin-left: 20px;">
+                <div style="font-weight: bold; font-size: 24px;">Car Poster | Premium Car Wall Poster</div>
+                <div style="justify-content: space-between; margin-top: 10px;"><div>$499</div><br>
+                    <div><i class="fa-regular fa-star"></i> 4.9 100+ reviews</div><br>
+                <div><button id="add-car-to-cart" type="button" style="background-color: #3921048f;color: #FFF21A;border: none;border-radius: 2px;"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button></div>
+                </div>
+            </div>
+        </div>
+        <!-- Collection -->
+      <div>
+            <div
+                style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 20px;">
+                <div style="font-size: 24px; font-weight: bold;">Sevaru Collection</div>
+                <div style="font-size: 10px; color: #5b08d7;">Most Loved. Most Owned </div>
+            </div>
+            <div style="display: flex;justify-content: space-around; flex-wrap: wrap; margin-top: 20px;">
+                <div>
+                    <a href="./POSTERSCREEN1LOVE.html" aria-label="View love posters">
+                        <img src="./Image/96.jpg" alt="love poster"
+                            style="height: 284px; width: 171px; border-radius: 10px;">
+                    </a>
+                    <div style="display:flex;flex-direction:column;align-items: center; margin-top: 10px;">
+                        <div style="text-align: center; font-size: 20px; font-weight: bold;">Love Poster</div>
+                        <div>₹999</div>
+                        <div style=" text-align: center; font-size: 15px;"><button
+                                style="background-color: #3921048f;color:#171717;border:none;border-radius: 3px;"><i
+                                    class="fa-solid fa-cart-shopping"></i>Add-to-Card</button></div>
+                    </div>
+                </div>
+                <div>
+                    <a href="./POSTERSCREEN2CRICKET.html" aria-label="View cricket posters">
+                        <img src="./Image/Virat Kohli.jpg" alt="Cricket"
+                            style="height: 284px; width: 171px; border-radius: 10px;">
+                    </a>
+                    <div style="display:flex;flex-direction:column;align-items: center; margin-top: 10px;">
+                        <div style="text-align: center; font-size: 20px; font-weight: bold;">Cricket</div>
+                        <div>₹999</div>
+                        <div style=" text-align: center; font-size: 15px;"><button
+                                style="background-color: #3921048f;color:#171717;border:none;border-radius: 3px;"><i
+                                    class="fa-solid fa-cart-shopping"></i>Add-to-Card</button></div>
+                    </div>
+                </div>
+                <div>
+                    <a href="./POSTERSCREEN3CAR.html" aria-label="View car posters">
+                        <img src="./Image/F1_images.svg" alt="Cars"
+                            style="height: 284px; width: 171px; border-radius: 10px;">
+                    </a>
+                    <div style="display:flex;flex-direction:column;align-items: center; margin-top: 10px;">
+                        <div style="text-align: center; font-size: 20px; font-weight: bold;">Cars</div>
+                        <div>₹999</div>
+                        <div style=" text-align: center; font-size: 15px;"><button
+                                style="background-color: #3921048f;color:#171717;border:none;border-radius: 3px;"><i
+                                    class="fa-solid fa-cart-shopping"></i>Add-to-Card</button></div>
+                    </div>
+                </div>
+                <div>
+                    <a href="./POSTERSCREEN4FOOTBALL.html" aria-label="View football posters">
+                        <img src="./Image/Messi.jpg" alt="Football"
+                            style="height: 284px; width: 171px; border-radius: 10px;">
+                    </a>
+                    <div style="display:flex;flex-direction:column;align-items: center; margin-top: 10px;">
+                        <div style="text-align: center; font-size: 20px; font-weight: bold;">Football</div>
+                        <div>₹999</div>
+                        <div style=" text-align: center; font-size: 15px;"><button
+                                style="background-color: #3921048f;color:#171717;border:none;border-radius: 3px;"><i
+                                    class="fa-solid fa-cart-shopping"></i>Add-to-Card</button></div>
+                    </div>
+                </div>
+                <div>
+                    <a href="./POSTERSCREEN5MAKE.html" aria-label="View customize posters">
+                        <img src="./Image/custom image.jpg" alt="customize"
+                            style="height: 284px; width: 171px; border-radius: 10px;">
+                    </a>
+                    <div style="display:flex;flex-direction:column;align-items: center; margin-top: 10px;">
+                        <div style="text-align: center; font-size: 20px; font-weight: bold;">customize</div>
+                        <div>₹999</div>
+                        <div style=" text-align: center; font-size: 15px;"><button
+                                style="background-color: #3921048f;color:#171717;border:none;border-radius: 3px;"><i
+                                    class="fa-solid fa-cart-shopping"></i>Add-to-Card</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- offers Zone -->
+        <div>
+            <div
+                style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 30px;">
+                <div style="font-size: 24px; font-weight: bold;">Sevaru Offers</div>
+                <div style="font-size: 10px; color: #5b08d7;">Exclusive Offers at Sevaru</div>
+            </div>
+            <div id="offer">
+                <img src="./Image/f75ab25f-53c8-4ba4-b2fc-2c98d4b51deb.png" alt="offer">
+            </div>
+        </div>
+    <!-- Questions -->
+        <div style="margin-top: 20px;">
+            <section class="faq-section">
+
+                <div class="faq-heading">
+                    <h1>Questions? <span>We've got answers.</span></h1>
+                    <p>Everything you need to know about Sevaru.</p>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What is Sevaru?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Sevaru is a premium aesthetic poster brand that
+                            brings creativity, art, and style to your spaces.
+                            We offer beautifully designed posters to make
+                            your walls more inspiring and unique.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What sizes are available?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            We offer multiple poster sizes to suit your space
+                            and preferences. You can choose from A4, A3, A2,
+                            and other available sizes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Do you offer custom posters?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Yes! We offer custom poster designs. Share your
+                            ideas, favourite images, or themes, and we'll help
+                            create a poster that matches your personal style.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How long does delivery take?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Orders are usually delivered within 5–7 business
+                            days, depending on your location and order details.
+                            You'll receive updates about your order status.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What if my order arrives damaged?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Your satisfaction matters to us. If your poster
+                            arrives damaged, contact our support team with
+                            photos of the product and packaging. We'll help
+                            arrange a suitable replacement or resolution.
+                        </p>
+                    </div>
+                </div>
+
+            </section>
+
+            <script>
+                const faqItems = document.querySelectorAll(".faq-item");
+
+                faqItems.forEach(item => {
+                    const question = item.querySelector(".faq-question");
+
+                    question.addEventListener("click", () => {
+
+                        faqItems.forEach(otherItem => {
+                            if (otherItem !== item) {
+                                otherItem.classList.remove("active");
+                            }
+                        });
+
+                        item.classList.toggle("active");
+                    });
+                });
+            </script>
+        </div>
+        <!-- footer -->
+         <div>
+            <footer class="footer">
+
+    <!-- Logo -->
+    <div class="logo">
+        <img src="./Image/logo.png"
+             alt="Sevaru Logo">
+    </div>
+
+    <!-- Quick Links -->
+    <h2 class="heading">Quick Links</h2>
+    <!-- <div class="heading-line"></div> -->
+
+    <div class="quick-links">
+
+        <div class="link-column">
+            <a href="Contact.html">Contact Us</a>
+            <a href="Terms.html">Terms and Conditions</a>
+            <a href="Refund.html">Cancellation &amp; Refund Policy</a>
+        </div>
+
+        <div class="link-column">
+            <a href="Privacy.html">Privacy Policy</a>
+            <a href="Shipping.html">Shipping Policy</a>
+            <a href="FAQ.html">FAQs</a>
+        </div>
+
+    </div>
+
+    <hr class="divider">
+
+    <!-- Contact Information -->
+    <h2 class="heading">Contact information</h2>
+    <!-- <div class="heading-line"></div> -->
+
+    <div class="contact-row">
+
+        <a href="mailto:sevaru.in@gmail.com"
+           class="email">
+            sevaru.in@gmail.com
+        </a>
+
+        <a href="https://www.instagram.com/"
+           target="_blank"
+           aria-label="Instagram">
+
+            <svg class="instagram"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2.2">
+
+                <rect x="3" y="3"
+                      width="18" height="18"
+                      rx="5"/>
+
+                <circle cx="12" cy="12" r="4"/>
+
+                <circle cx="17.5" cy="6.5" r="1"
+                        fill="currentColor"/>
+
+            </svg>
+
+        </a>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class="copyright" style="text-align: center;">
+        2026 sevaru.in all rights reserved
+    </div>
+
+</footer>
+         </div>
+    </div>
+
+    <script>
+        document.getElementById('add-car-to-cart').addEventListener('click', (event) => {
+            const cart = JSON.parse(localStorage.getItem('sevaruCart') || '[]');
+            const existing = cart.find((item) => item.id === 'car-poster');
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({
+                    id: 'car-poster',
+                    name: 'Car Poster | Premium Car Wall Poster',
+                    price: 499,
+                    image: './Image/F1_images.svg',
+                    size: 'A3',
+                    quantity: 1
+                });
+            }
+            localStorage.setItem('sevaruCart', JSON.stringify(cart));
+            const button = event.currentTarget;
+            button.innerHTML = '<i class="fa-solid fa-check"></i> Added to Cart';
+            window.setTimeout(() => {
+                button.innerHTML = '<i class="fa-solid fa-cart-shopping"></i> Add to Cart';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
+
+
